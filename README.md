@@ -2,6 +2,83 @@
 
 [English](#english) | [中文](#中文)
 
+## English
+
+A memory-enhanced personal assistant based on the ReAct (Reasoning + Acting) framework, using DeepSeek API, supporting short-term memory, long-term memory (ChromaDB vector storage), and tool calling.
+
+### Features
+
+- **Short-term Memory**: Sliding window keeps the last 10 rounds of conversation history
+- **Long-term Memory**: ChromaDB vector database persistently stores user preferences across sessions (e.g., "I don't eat spicy food")
+- **ReAct Reasoning**: Real-time display of model thinking process (💭 Thought → ⚡ Action → 👁 Observation)
+- **Tool Calling**:
+  - 🔍 Google Search (SerpAPI)
+  - 🍽️ Restaurant Search & Details
+
+### Quick Start
+
+#### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### Configure API Key
+
+Create a `.env` file in the parent directory:
+```
+DEEPSEEK_API_KEY=your_DeepSeek_API_Key
+```
+
+#### Run
+
+```bash
+python main.py
+```
+
+### Project Structure
+
+```
+├── main.py      # CLI entry, Rich colored terminal output
+├── agent.py     # ReAct + Function Calling core logic
+├── memory.py    # Short/Long-term memory management (ChromaDB)
+├── llm.py       # DeepSeek API wrapper
+├── tools.py     # Tool functions (search, restaurants)
+├── config.py    # Configuration file
+└── chroma_data/ # ChromaDB persistent storage (ignored)
+```
+
+### Usage Example
+
+```
+You> I work in Beijing, I don't eat spicy food
+💭 Thought: ...
+⚡ Action: ...
+👁 Observation: ...
+
+You> Recommend a restaurant for me
+→ Automatically considers your preferences, recommends non-spicy restaurants
+```
+
+### Special Commands
+
+- `记忆` / `memory` - View stored long-term memories
+- `历史` / `history` - View short-term history length
+- `exit` / `quit` - Exit the program
+
+### Tech Stack
+
+- Python 3.10+
+- DeepSeek API (OpenAI compatible)
+- ChromaDB (Vector database)
+- Rich (Terminal beautification)
+- SerpAPI (Google Search)
+
+### License
+
+MIT
+
+
 ---
 
 ## 中文
@@ -82,78 +159,3 @@ MIT
 
 ---
 
-## English
-
-A memory-enhanced personal assistant based on the ReAct (Reasoning + Acting) framework, using DeepSeek API, supporting short-term memory, long-term memory (ChromaDB vector storage), and tool calling.
-
-### Features
-
-- **Short-term Memory**: Sliding window keeps the last 10 rounds of conversation history
-- **Long-term Memory**: ChromaDB vector database persistently stores user preferences across sessions (e.g., "I don't eat spicy food")
-- **ReAct Reasoning**: Real-time display of model thinking process (💭 Thought → ⚡ Action → 👁 Observation)
-- **Tool Calling**:
-  - 🔍 Google Search (SerpAPI)
-  - 🍽️ Restaurant Search & Details
-
-### Quick Start
-
-#### Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-#### Configure API Key
-
-Create a `.env` file in the parent directory:
-```
-DEEPSEEK_API_KEY=your_DeepSeek_API_Key
-```
-
-#### Run
-
-```bash
-python main.py
-```
-
-### Project Structure
-
-```
-├── main.py      # CLI entry, Rich colored terminal output
-├── agent.py     # ReAct + Function Calling core logic
-├── memory.py    # Short/Long-term memory management (ChromaDB)
-├── llm.py       # DeepSeek API wrapper
-├── tools.py     # Tool functions (search, restaurants)
-├── config.py    # Configuration file
-└── chroma_data/ # ChromaDB persistent storage (ignored)
-```
-
-### Usage Example
-
-```
-You> I work in Beijing, I don't eat spicy food
-💭 Thought: ...
-⚡ Action: ...
-👁 Observation: ...
-
-You> Recommend a restaurant for me
-→ Automatically considers your preferences, recommends non-spicy restaurants
-```
-
-### Special Commands
-
-- `记忆` / `memory` - View stored long-term memories
-- `历史` / `history` - View short-term history length
-- `exit` / `quit` - Exit the program
-
-### Tech Stack
-
-- Python 3.10+
-- DeepSeek API (OpenAI compatible)
-- ChromaDB (Vector database)
-- Rich (Terminal beautification)
-- SerpAPI (Google Search)
-
-### License
-
-MIT
