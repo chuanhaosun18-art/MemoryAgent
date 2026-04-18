@@ -1,4 +1,4 @@
-# MemoryAgent - 记忆增强个人助手 / Memory-Enhanced Personal Assistant
+# MemoryAgent - Memory-Enhanced Personal Assistant / 记忆增强个人助手
 
 [English](#english) | [中文](#中文)
 
